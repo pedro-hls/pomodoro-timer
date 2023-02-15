@@ -65,6 +65,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    
 }
 
 .icons {
@@ -72,7 +73,14 @@ body {
     cursor: pointer;
     padding: 0px 45px 0px 45px;
     font-size: 1.5em;
+    box-sizing: border-box;
 }
+
+.icons:hover {
+    font-size: 1.6em;
+
+}
+
 
 .start {
     width: 130px;
@@ -109,4 +117,14 @@ body {
     transform: translate(0px, -2px);
     animation-duration: 1s;
     transition: 0.5s;
+}
+
+.popup {
+    background-color: var(--white);
+    width: 200px;
+}
+
+.hidden {
+    position: absolute;
+    top: 52%;
 }
