@@ -12,36 +12,40 @@
     
     <main class="screen">
         <h1 class="title"> pomodoro </h1>
-        <section class="color">
-            <p class="timer difFont"> 21 </p> <p class="timer">:</p> <p class="timer difFont"> 00 </p>
+        <section class="color red">
+            <p class="timer"> 25:00 </p>
         </section> 
 
         <div class="middle">
 
-            <div class="settings popup"> 
-                bbbbbbbbbbb
+                <i class="fa-solid fa-gears icons"></i>
+                <button class="mainButton start"> começar </button>
+                <button class="mainButton pause"> pausar </button>
+                <i class="fa-solid fa-list-check icons"></i>
+                
             </div>
+            
+            <div class="options">
 
-            <i class="fa-solid fa-gears icons"></i>
-            <button class="start"> começar </button>
-            <i class="fa-solid fa-list-check icons"></i>
-
-    
-            <div class="tasks popup">
-                <input type="checkbox" name="tasks" id="tasks">
-                <label for="tasks"> aaa </label>
-            </div>
-
-        </div>
-
-        <div class="options">
-            <button class="types"> foco </button>
-            <button class="types"> pausa curta </button>
-            <button class="types"> pausa longa </button>
+            <i class="fa-solid fa-arrow-rotate-right icons restart"></i>
+            <button class="types focus"> foco </button>
+            <button class="types short"> pausa curta </button>
+            <button class="types long"> pausa longa </button>
             <!-- <button class="secret"> credits </button> -->
         </div>
 
     </main>
+
+    <aside>
+        <div class="settings popup"> 
+            <p> config </p>
+        </div>
+        <div class="tasks popup">
+
+            <p> tasks </p>
+
+        </div>
+    </aside>
 
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/a6c6a11ad0.js" crossorigin="anonymous"></script>
