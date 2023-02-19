@@ -16,6 +16,7 @@
     font-size: 1em;
     box-sizing: border-box;
     font-family: var(--font-padrao);
+    color: var(--black);
 }
 
 body {
@@ -33,11 +34,11 @@ body {
     color: var(--white);
     font-size: 3em;
     font-weight: 200;
-    margin: 250px 0px 50px 0px;
+    margin: 30px 0px 270px 0px;
 }
 
 .color {
-    width: 100vw;
+    width: 100%;
     text-align: center;
     height: 200px;
     display: flex;
@@ -70,6 +71,17 @@ body {
     user-select: none;
 }
 
+.container-grid {
+    margin: 0px 150px;
+    display: grid;
+    flex-direction: center;
+    justify-content: center;
+    grid-template-areas:
+    "settings start tasks"
+    "settings reset tasks"
+    "settings options tasks"
+}
+
 .middle {
     display: flex;
     flex-direction: row;
@@ -77,6 +89,8 @@ body {
     align-items: center;
     margin: 20px 0px;
     box-sizing: border-box;
+
+    grid-area: start;
 }
 
 .icons {
@@ -116,6 +130,9 @@ body {
 
 .restart {
     margin-bottom: 30px;
+    grid-area: reset;
+    padding-bottom: 50px;
+    margin: auto;
 }
 
 .options {
@@ -123,12 +140,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    grid-area: options;
 }
 
 .types {
     color: var(--white);
     font-weight: 200;
-    padding-bottom: 5px;
+    padding-top: 5px;
     background: none;
     border: none;
     font-size: 1.5em;
@@ -149,9 +168,76 @@ body {
     margin-top: 20px;
     width: 200px;
     padding: 15px;
+    opacity: 0%;
+    transition: 0.5s ease-in-out;
 }
 
-.hidden {
-    position: absolute;
-    top: 52%;
+.settings {
+    grid-area: settings;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    grid-area: tasks;
+}
+
+.showPopup {
+    opacity: 100%;
+}
+
+.tasksTitle {
+    color: var(--black);
+    padding-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.taskInput {
+    width: 130px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c9;
+    padding: 5px 10px;
+    height: 30px;
+}
+
+.taskList {
+    list-style: none;
+}
+
+.containerInputTrash {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.resetList {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border: 1px solid #c2c2c9;
+    background-color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.resetList:hover {
+    background-color: var(--white);
+}
+
+.newItem {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 20px;
+}
+
+.newItem:checked {
+    accent-color: var(--black);
 }

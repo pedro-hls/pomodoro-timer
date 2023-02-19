@@ -6,15 +6,23 @@ document.querySelector('.focus').addEventListener('click', red)
 document.querySelector('.short').addEventListener('click', green)
 document.querySelector('.long').addEventListener('click', blue)
 
+document.querySelector('.show-settings').addEventListener('click', showSettings)
+document.querySelector('.show-tasks').addEventListener('click', showTasks)
 
-let focusCount = 1500
-let shortCount = 300
-let longCount = 600
+document.querySelector('.resetList').addEventListener('click', resetList)
+// Opção alternativa: fazer um objeto com as 3 opções de cores, puxar o index da cor ao clicar, esconder o index atual - 1 e index atual -2
+// obj = [ r g b ]
 
-seconds = focusCount
 let interval = null
 
+focusCount = 1500
+shortCount = 300
+longCount = 600
+
+seconds = 1500
+
 function timer(){
+
         seconds--
 
         let sec = seconds % 60
@@ -29,9 +37,65 @@ function timer(){
         }
 
         document.querySelector('.timer').innerHTML = `${min}:${sec}`
+
+        if (seconds <= 0 && min == 0) {
+            clearInterval(interval)
+            interval = null
+        }
+}
+
+colorBanner = document.querySelector('.color')
+
+function red() {
+
+    colorBanner.classList.add('red')
+    colorBanner.classList.remove('green')
+    colorBanner.classList.remove('blue')
+    document.querySelector('.timer').innerHTML = '25:00'
+
+    document.querySelector('.start').style.display = 'block'
+    document.querySelector('.pause').style.display = 'none'
+
+    clearInterval(interval)
+            interval = null
+
+    seconds = focusCount
+}
+
+function green() {
+
+    colorBanner.classList.add('green')
+    colorBanner.classList.remove('red')
+    colorBanner.classList.remove('blue')
+    document.querySelector('.timer').innerHTML = '05:00'
+
+    document.querySelector('.start').style.display = 'block'
+    document.querySelector('.pause').style.display = 'none'
+
+    clearInterval(interval)
+            interval = null
+
+    seconds = shortCount
+}
+
+function blue() {
+
+    colorBanner.classList.add('blue')
+    colorBanner.classList.remove('red')
+    colorBanner.classList.remove('green')
+    document.querySelector('.timer').innerHTML = '10:00'
+
+    document.querySelector('.start').style.display = 'block'
+    document.querySelector('.pause').style.display = 'none'
+
+    clearInterval(interval)
+            interval = null
+
+    seconds = longCount
 }
 
 function start() {
+
     if (interval) {
         return
     }
@@ -43,6 +107,7 @@ function start() {
 }
 
 function pause() {
+
     clearInterval(interval)
     interval = null
     document.querySelector('.start').style.display = 'block'
@@ -50,34 +115,67 @@ function pause() {
 }
 
 function restart() {
-    seconds = 
-    document.querySelector('.timer').innerHTML = '25:00'
+
+    if (colorBanner.classList.contains('red')) {
+        document.querySelector('.timer').innerHTML = '25:00'
+        seconds = focusCount
+    }
+
+    if (colorBanner.classList.contains('green')) {
+        document.querySelector('.timer').innerHTML = '05:00'
+        seconds = shortCount
+    }
+
+    if (colorBanner.classList.contains('blue')) {
+        document.querySelector('.timer').innerHTML = '10:00'
+        seconds = longCount
+    }
+
+    clearInterval(interval)
+    interval = null
+
+    document.querySelector('.start').style.display = 'block'
+    document.querySelector('.pause').style.display = 'none'
 }
 
-
-function red() {
-    document.querySelector('.color').classList.add('red')
-    document.querySelector('.color').classList.remove('green')
-    document.querySelector('.color').classList.remove('blue')
-    document.querySelector('.timer').innerHTML = '25:00'
-    // pausar o contador quando torcar de tipo
-    seconds = focusCount
+function showSettings() {
+    let set = document.querySelector('.settings')
+    set.classList.toggle('showPopup')
 }
 
-function green() {
-    document.querySelector('.color').classList.add('green')
-    document.querySelector('.color').classList.remove('red')
-    document.querySelector('.color').classList.remove('blue')
-    document.querySelector('.timer').innerHTML = '05:00'
-
-    seconds = shortCount
+function showTasks() {
+    let set = document.querySelector('.tasks')
+    set.classList.toggle('showPopup')
 }
 
-function blue() {
-    document.querySelector('.color').classList.add('blue')
-    document.querySelector('.color').classList.remove('red')
-    document.querySelector('.color').classList.remove('green')
-    document.querySelector('.timer').innerHTML = '10:00'
+const input = document.querySelector('.taskInput')
+const list = document.querySelector('.taskList')
 
-    seconds = longCount
+taskNumber = 0
+
+function addTask(e) {
+
+    if (e.key === 'Enter' && taskNumber < 6) {
+
+        const newTask = document.createElement('li')
+
+        newTask.innerHTML = 
+        `<input type="checkbox" id="checkList" name="checkList" class="newItem"> ${input.value}`
+        input.value = ""
+
+        list.appendChild(newTask)
+
+        taskNumber++
+        
+    }
+}
+
+input.addEventListener('keyup', addTask)
+
+function resetList() {
+    var listaCompleta = document.querySelector('.taskList').childNodes
+    for(remove = 0 ; remove <= 6; remove++) {
+    document.querySelector('.taskList').removeChild(listaCompleta[2])}
+
+    taskNumber = 0
 }

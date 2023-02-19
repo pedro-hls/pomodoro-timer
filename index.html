@@ -9,45 +9,60 @@
     <title> pomodoro </title>
 </head>
 <body>
+
     
     <main class="screen">
+
         <h1 class="title"> pomodoro </h1>
-        <section class="color red">
+        <div class="color red">
             <p class="timer"> 25:00 </p>
-        </section> 
+        </div>
 
-        <div class="middle">
+    </main>
+    
+    <section class="container-grid">
 
-                <i class="fa-solid fa-gears icons"></i>
+            <div class="middle">
+
+                <i class="fa-solid fa-gears icons show-settings"></i>
                 <button class="mainButton start"> começar </button>
                 <button class="mainButton pause"> pausar </button>
-                <i class="fa-solid fa-list-check icons"></i>
+                <i class="fa-solid fa-list-check icons show-tasks"></i>
                 
             </div>
+
+            <i class="fa-solid fa-arrow-rotate-right icons restart"></i>
             
             <div class="options">
 
-            <i class="fa-solid fa-arrow-rotate-right icons restart"></i>
             <button class="types focus"> foco </button>
             <button class="types short"> pausa curta </button>
             <button class="types long"> pausa longa </button>
             <!-- <button class="secret"> credits </button> -->
-        </div>
+            </div>
 
-    </main>
-
-    <aside>
-        <div class="settings popup"> 
+        
+        <aside class="settings popup">
             <p> config </p>
-        </div>
-        <div class="tasks popup">
+        </aside>
+        
+        <aside class="tasks popup">
 
-            <p> tasks </p>
+            <ul class="taskList">
+                <li class="tasksTitle"> tarefas </li>
+            </ul>
 
-        </div>
-    </aside>
+            <div class="containerInputTrash">
+                <input type="text" name="taskInput" id="taskInput" class="taskInput">
+                <i class="fa-solid fa-trash resetList"></i>
+            </div>
+            
+        </aside>
+
+    </section>
 
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/a6c6a11ad0.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
