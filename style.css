@@ -32,15 +32,42 @@ body {
 
 .title {
     color: var(--white);
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: 200;
-    margin: 30px 0px 270px 0px;
+    margin: 30px 0px 200px 0px;
+    transition: 0.5s;
 }
+
+.title:hover {
+    animation-name: title-animation;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    cursor: pointer;
+}
+
+@keyframes title-animation{
+    0%{
+       color: var(--white);
+    }
+
+    40%{
+        opacity: 5%;
+    }
+    
+    60%{
+        opacity: 100%;
+        text-shadow: 0px 0px 5px #eeeeee;
+    }
+
+    100% {
+        text-shadow: 0px 0px 5px #eeeeee00;
+    }
+ }
 
 .color {
     width: 100%;
     text-align: center;
-    height: 200px;
+    height: 180px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -64,7 +91,7 @@ body {
 
 .timer {
     color: var(--white);
-    font-size: 10em;
+    font-size: 8em;
     font-weight: 500;
     text-align: center;
     font-family: var(--font-monospaced);
@@ -97,7 +124,7 @@ body {
     color: var(--white);
     cursor: pointer;
     padding: 0px 45px 0px 45px;
-    font-size: 1.8em;
+    font-size: 1.5em;
     display: inline-block;
     
 }
@@ -111,11 +138,11 @@ body {
 }
 
 .mainButton {
-    width: 130px;
-    height: 45px;
+    width: 120px;
+    height: 40px;
     border-radius: 25px;
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1.1em;
     cursor: pointer;
     border: 1px solid #afafaf;
 }
