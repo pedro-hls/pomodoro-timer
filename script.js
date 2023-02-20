@@ -23,28 +23,49 @@ seconds = 1500
 
 function timer(){
 
-        seconds--
+    seconds--
 
-        let sec = seconds % 60
-        let min = Math.floor(seconds / 60)
+    let sec = seconds % 60
+    let min = Math.floor(seconds / 60)
 
-        if (sec < 10) {
-            sec = `0${sec}`
-        }
+    if (sec < 10) {
+        sec = `0${sec}`
+    }
 
-        if (min < 10) {
-            min = `0${min}`
-        }
+    if (min < 10) {
+        min = `0${min}`
+    }
 
-        document.querySelector('.timer').innerHTML = `${min}:${sec}`
+    document.querySelector('.timer').innerHTML = `${min}:${sec}`
 
-        if (seconds <= 0 && min == 0) {
-            clearInterval(interval)
-            interval = null
-        }
+    if (seconds <= 0 && min == 0) {
+        clearInterval(interval)
+        interval = null
+
+        let audio = document.querySelector('.timerSound')
+
+        audio.currentTime=0
+        audio.volume = 0.1
+        audio.play()
+
+        restart()
+
+        document.querySelector('.timer').innerHTML = '00:00'
+    }
+        
 }
 
 colorBanner = document.querySelector('.color')
+
+function displayStart() {
+    document.querySelector('.start').style.display = 'block'
+    document.querySelector('.pause').style.display = 'none'
+}
+
+function displayPause() {
+    document.querySelector('.start').style.display = 'none'
+    document.querySelector('.pause').style.display = 'block'
+}
 
 function red() {
 
@@ -53,11 +74,10 @@ function red() {
     colorBanner.classList.remove('blue')
     document.querySelector('.timer').innerHTML = '25:00'
 
-    document.querySelector('.start').style.display = 'block'
-    document.querySelector('.pause').style.display = 'none'
+    displayStart()
 
     clearInterval(interval)
-            interval = null
+    interval = null
 
     seconds = focusCount
 }
@@ -69,11 +89,10 @@ function green() {
     colorBanner.classList.remove('blue')
     document.querySelector('.timer').innerHTML = '05:00'
 
-    document.querySelector('.start').style.display = 'block'
-    document.querySelector('.pause').style.display = 'none'
+    displayStart()
 
     clearInterval(interval)
-            interval = null
+    interval = null
 
     seconds = shortCount
 }
@@ -85,37 +104,43 @@ function blue() {
     colorBanner.classList.remove('green')
     document.querySelector('.timer').innerHTML = '10:00'
 
-    document.querySelector('.start').style.display = 'block'
-    document.querySelector('.pause').style.display = 'none'
+    displayStart()
 
     clearInterval(interval)
-            interval = null
+    interval = null
 
     seconds = longCount
 }
 
 function start() {
-
     if (interval) {
         return
     }
         
     interval = setInterval(timer, 1000)
 
-    document.querySelector('.start').style.display = 'none'
-    document.querySelector('.pause').style.display = 'block'
+    displayPause()
+
+    let audio = document.querySelector('.startSound')
+    audio.currentTime=0
+    audio.volume = 0.02
+    audio.play()
 }
 
 function pause() {
-
     clearInterval(interval)
     interval = null
-    document.querySelector('.start').style.display = 'block'
-    document.querySelector('.pause').style.display = 'none'
+
+    displayStart()
+
+    let audio = document.querySelector('.pauseSound')
+    audio.currentTime=0
+    audio.volume = 0.02
+    audio.play()
 }
 
-function restart() {
 
+function restart() {
     if (colorBanner.classList.contains('red')) {
         document.querySelector('.timer').innerHTML = '25:00'
         seconds = focusCount
@@ -134,8 +159,7 @@ function restart() {
     clearInterval(interval)
     interval = null
 
-    document.querySelector('.start').style.display = 'block'
-    document.querySelector('.pause').style.display = 'none'
+    displayStart()
 }
 
 function showSettings() {
